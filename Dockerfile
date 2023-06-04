@@ -8,10 +8,9 @@ WORKDIR /app
 COPY . /app
 
 # Install package requirements
-RUN pip3 install --upgrade pip
-RUN pip3 install -r requirements.txt
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+RUN uvicorn main:app --port 8000 --reload
 
 # EXPOSE 80 port
-EXPOSE 80
-
-ENTRYPOINT ["/app/docker-entrypoint.sh"]
+EXPOSE 8000
