@@ -10,7 +10,7 @@ COPY . /app
 # Install package requirements
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN uvicorn main:app --port 8000 --reload
+RUN uvicorn main:app --port 80 --reload
 
 # EXPOSE 80 port
-EXPOSE 8000
+EXPOSE 80
