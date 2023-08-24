@@ -6,7 +6,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return "hello inbody"
+    return "hello, bmi"
 
 @app.get("/bmi", response_class=HTMLResponse)
 def cal_bmi(height: int, weight: int):

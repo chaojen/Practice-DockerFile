@@ -5,12 +5,12 @@ FROM python
 WORKDIR /app
 
 # Update the repository
-COPY . /app
+COPY python/. /app
 
 # Install package requirements
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN uvicorn main:app --port 80 --reload
 
-# EXPOSE 80 port
+CMD uvicorn main:app --host 0.0.0.0 --port 80 --reload
+
 EXPOSE 80

@@ -1,0 +1,7 @@
+version: '1'
+
+services:
+  hello-python:
+    build: .
+    ports:
+      - 80:80
