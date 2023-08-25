@@ -1,11 +1,13 @@
 # Pull base image.
 FROM python
 
+ENV HELLO_TO="Python"
+
 # Set default WORKDIR in container
 WORKDIR /app
 
 # Update the repository
-COPY python/. /app
+COPY . /app
 
 # Install package requirements
 RUN pip install --upgrade pip
