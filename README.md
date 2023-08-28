@@ -18,6 +18,7 @@
 - `docker ps`: 列出執行中容器
   - `-a`: 包含未在執行中的容器
 - `docker image pull <image-name>`: 從 Docker Hub 上抓取映像檔
+- `docker image history <image-name>`: 顯示映像檔的映像層(metadata)
 - `docker images`: 列出所有映像檔
   - `'<alphabet>*'`: 指定開頭字母
 - `docker top <container-id>`: 列出指定容器的程序
@@ -27,6 +28,9 @@
 - `docker cp <source-path> <target-path>`: 透過容器 ID 也可以將檔案複製進容器內，ex: `docker cp index.html fbe:/usr/local/apache2/htdocs/index.html`
 - `docker build <dockerfile-path>`: 建立映像檔
   - `-t <image-name>`, `--tag <image-name>`: 設定映像檔名稱
+  - `<image-name>:<tag-name>`: 標記 TAG
+- `docker system df`: 顯示 Docker 實際上所使用的磁碟空間
+- `docker commit <container-name> <new-image-name>`: 以容器建立新的映像檔
 
 ### Dockerfile
 
