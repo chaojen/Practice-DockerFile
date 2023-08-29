@@ -7,6 +7,7 @@
 ## Docker Common
 
 - `docker system df`: 顯示 Docker 實際上所使用的磁碟空間
+- `docker login --username <user-name>`: 登入儲存庫伺服器(預設為 Docker Hub)
 
 ## Docker Network
 
@@ -26,9 +27,12 @@
 ## Docker Image
 
 - `docker image pull <image-name>`: 從 Docker Hub 上抓取映像檔
+- `docker image push <image-reference>`: 將映像檔推上服務器
 - `docker image history <image-name>`: 顯示映像檔的映像層(metadata)
+- `docker image tag <target-image> <account-name>/<image-name>:<tag>`: 將映像檔重新命名為映像檔完整名稱(image reference)
 - `docker images`: 列出所有映像檔
-  - `'<alphabet>*'`: 指定開頭字母
+  - `'<key-word>*'`: 指定開頭字母
+  - `--filter reference=<image-name> --filter reference='*/<image-name>'`: 列出所有該映像檔的版本
 - `docker build <dockerfile-path>`: 建立映像檔
   - `-t <image-name>`, `--tag <image-name>`: 設定映像檔名稱
   - `<image-name>:<tag-name>`: 標記 TAG
@@ -39,6 +43,7 @@
   - `--name`: 為容器命名
   - `-e <KEY>=<VALUE>`, `--env <KEY>=<VALUE>`: 設定環境變數
   - `--network <vnetwork-name>`: 連接到 Docker 虛擬網路
+  - `--restart <options>`: 設定重啟 Docker 時容器的重啟策略
 
 ## Docker Container
 
