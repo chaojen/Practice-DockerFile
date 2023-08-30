@@ -8,6 +8,8 @@
 
 - `docker system df`: 顯示 Docker 實際上所使用的磁碟空間
 - `docker login --username <user-name>`: 登入儲存庫伺服器(預設為 Docker Hub)
+- `docker info`: 可以查看 Docker 的相關設定，包含不安全的登錄伺服器清單
+- `echo $'\n127.0.0.1 registry.local' | sudo tee -a /etc/hosts`: 寫入電腦的 hosts 檔案來為本機的 Docker Registry 取別名
 
 ## Docker Network
 
@@ -44,6 +46,12 @@
   - `-e <KEY>=<VALUE>`, `--env <KEY>=<VALUE>`: 設定環境變數
   - `--network <vnetwork-name>`: 連接到 Docker 虛擬網路
   - `--restart <options>`: 設定重啟 Docker 時容器的重啟策略
+
+## Registry API [(docs)](https://docs.docker.com/registry/spec/api/)
+
+- `curl <registry-server-path>/v2/<image-name>/tags/list`: 列出 Registry 中 image 的所有版本
+- `curl --head <registry-server-path>/v2/<image-name>/manifests/<tag> -H 'Accept: application/vnd.docker.distribution.manifest.v2+json'`: 查看 image tag 版本的 manifest
+- `curl -X DELETE <registry-server-path>/v2/<image-name>/manifests sha256:127d0ed6f7a8d148a39b7ea168c083694d030e2bffbda60cb53057e731114fbb`: 刪除對應雜湊值的 image
 
 ## Docker Container
 
