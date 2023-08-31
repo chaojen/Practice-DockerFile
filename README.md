@@ -25,6 +25,7 @@
 - `CMD [..., ...]`: 設定在啟動容器時自動執行的指令
 - `ENTRYPOINT [..., ...]`: 從映像檔啟動容器時應執行的操作
 - `EXPOSE <port-number>`: 指定連接的埠號
+- `VPLUME <target-directory>`: 建立新的 volume 掛載到容器中，每次執行都會是隨幾的 ID，但是在容器刪除後會保存
 
 ## Docker Image
 
@@ -46,6 +47,10 @@
   - `-e <KEY>=<VALUE>`, `--env <KEY>=<VALUE>`: 設定環境變數
   - `--network <vnetwork-name>`: 連接到 Docker 虛擬網路
   - `--restart <options>`: 設定重啟 Docker 時容器的重啟策略
+  - `--volumes-from <container-name>`: 從其他容器掛載 Volume
+  - `-v <volume-name>:<path>`: 掛載 Volume，此指令會覆蓋 Dockerfile 中的 `VOLUME`
+  - `--mount type=<bind>,source=<source-path>,target=<target-path>`: 掛載本機資料夾
+    -`readonly`: 唯讀
 
 ## Registry API [(docs)](https://docs.docker.com/registry/spec/api/)
 
@@ -66,6 +71,12 @@
 - `docker stats <container-id>`: 顯示容器使用系統資源狀況
 - `docker cp <source-path> <target-path>`: 透過容器 ID 也可以將檔案複製進容器內，ex: `docker cp index.html fbe:/usr/local/apache2/htdocs/index.html`
 - `docker commit <container-name> <new-image-name>`: 以容器建立新的映像檔
+- `docker inspect <container-name>`: 檢視容器詳細資訊
+  - `--format '{{.Mounts}}'`: 僅列出掛載 Volume
+- `docker exec <container-name> <command>`: 在容器內執行指令
+- `docker volume`: 進行 Volume 相關的指令操作
+  - `ls`: 列出所有 Volume
+  - `create <volume-name>`: 建立 Volume
 
 ## Docker Compose
 
