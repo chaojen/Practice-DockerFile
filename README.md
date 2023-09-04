@@ -14,6 +14,7 @@
 ## Docker Network
 
 - `docker network create <network-name>`: 建立 Docker 虛擬網路
+- `docker network list`: 列出所有虛擬網路
 
 ## Dockerfile
 
@@ -80,8 +81,24 @@
 
 ## Docker Compose
 
-- `docker compose up -d`: 執行 Compose
-- `docker compose down`: 停用 Compose
+- `docker compose up`: 建立 Compose
+  - `-d`, `--detach`: 於背景中執行
+  - `--scale <component-name>=<count>`: 擴展應用程式元件
+- `docker compose start`: 執行 Compose
+- `docker compose stop`: 停止 Compose
+- `docker compose down`: 卸除 Compose
+- `docker compose logs`: 顯示每個容器的日誌
+  - `--tail=`: 顯示最後幾筆日誌
+  - `<component-name>`: 指定某元件的日誌
+- `docker run --rm -it --name dcv -v ${PWD}:/input pmsipilot/docker-compose-viz render -m image docker-compose.yml --output-file=docker-compose.png --force`: 可以利用 pmsipilot/docker-compose-viz 將 compose.yml 圖示化
+
+## Docker Compose File
+
+- `version: '<version-name>'`: compose 版本
+- `services`: 列出組成應用程式的所有元件
+- `networks`: 列出 service 可以加入的 Docker 虛擬網路
+- `depends_on`: 相依於其他的容器
+- `ports`: 連接的埠號
 
 ## Kubernetes
 
