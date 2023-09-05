@@ -95,10 +95,15 @@
 ## Docker Compose File
 
 - `version: '<version-name>'`: compose 版本
-- `services`: 列出組成應用程式的所有元件
-- `networks`: 列出 service 可以加入的 Docker 虛擬網路
-- `depends_on`: 相依於其他的容器
-- `ports`: 連接的埠號
+- `services`: 組成應用程式的所有元件
+  - `<component>`: 命名元件名稱
+    - `image`: 元件的映像檔
+    - `ports`: 連接的埠號
+    - `environment`: 環境變數
+    - `depends_on`: 相依於其他的容器
+    - `networks`: 列出 service 可以加入的 Docker 虛擬網路
+    - `secrets tartget`: 讀取的 secret 訊息
+- `secrets`: 從本機讀檔做 secret 設定
 
 ## Kubernetes
 
