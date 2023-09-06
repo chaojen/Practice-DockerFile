@@ -23,10 +23,12 @@
 - `WORKDIR <path>`: 指定映像檔系統中的工作目錄
 - `COPY <source-path> <target-path>`: 將檔案複製到工作目錄下的路徑
 - `RUN ...`: 執行指令
-- `CMD [..., ...]`: 設定在啟動容器時自動執行的指令
+- `CMD ...`: 設定在啟動容器時自動執行的指令
 - `ENTRYPOINT [..., ...]`: 從映像檔啟動容器時應執行的操作
 - `EXPOSE <port-number>`: 指定連接的埠號
 - `VPLUME <target-directory>`: 建立新的 volume 掛載到容器中，每次執行都會是隨幾的 ID，但是在容器刪除後會保存
+- `HEALTHCHECK ...`: 狀態檢查
+- `CMD curl --fail ... && ...`: 相依性檢查利用 `CMD` 參考快速失敗(fail-fast)設計
 
 ## Docker Image
 
