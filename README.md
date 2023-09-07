@@ -54,12 +54,13 @@
   - `-v <volume-name>:<path>`: 掛載 Volume，此指令會覆蓋 Dockerfile 中的 `VOLUME`
   - `--mount type=<bind>,source=<source-path>,target=<target-path>`: 掛載本機資料夾
     -`readonly`: 唯讀
+  - `--health-interval <time>`: 狀態檢查時間頻率
 
 ## Registry API [(docs)](https://docs.docker.com/registry/spec/api/)
 
 - `curl <registry-server-path>/v2/<image-name>/tags/list`: 列出 Registry 中 image 的所有版本
 - `curl --head <registry-server-path>/v2/<image-name>/manifests/<tag> -H 'Accept: application/vnd.docker.distribution.manifest.v2+json'`: 查看 image tag 版本的 manifest
-- `curl -X DELETE <registry-server-path>/v2/<image-name>/manifests sha256:127d0ed6f7a8d148a39b7ea168c083694d030e2bffbda60cb53057e731114fbb`: 刪除對應雜湊值的 image
+- `curl -X DELETE <registry-server-path>/v2/<image-name>/manifests sha256:<hash-number>`: 刪除對應雜湊值的 image
 
 ## Docker Container
 
@@ -100,11 +101,18 @@
 - `services`: 組成應用程式的所有元件
   - `<component>`: 命名元件名稱
     - `image`: 元件的映像檔
+    - `restart: <on-failure>`: 重啟情況
     - `ports`: 連接的埠號
     - `environment`: 環境變數
     - `depends_on`: 相依於其他的容器
     - `networks`: 列出 service 可以加入的 Docker 虛擬網路
     - `secrets tartget`: 讀取的 secret 訊息
+    - `healthcheck`: 狀態檢查
+      - `test`: 狀態檢查命令
+      - `interval`: 時間區間
+      - `timeout`: 允許檢查時間
+      - `retries`: 允許連續失敗次數
+      - `start_period`: 檢查前的等待時間
 - `secrets`: 從本機讀檔做 secret 設定
 
 ## Kubernetes
