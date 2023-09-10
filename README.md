@@ -85,6 +85,7 @@
 ## Docker Compose
 
 - `docker compose up`: 建立 Compose
+  - `-f`: 指定 docker compose 檔案
   - `-d`, `--detach`: 於背景中執行
   - `--scale <component-name>=<count>`: 擴展應用程式元件
 - `docker compose start`: 執行 Compose
@@ -114,6 +115,12 @@
       - `retries`: 允許連續失敗次數
       - `start_period`: 檢查前的等待時間
 - `secrets`: 從本機讀檔做 secret 設定
+
+## Prometheus
+收集容器指標數據
+
+## Grafana
+依賴 Prometheus 呈現儀表板
 
 ## Kubernetes
 
