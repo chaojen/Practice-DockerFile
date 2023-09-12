@@ -1,8 +1,4 @@
-# practice-kubernetes
-
-使用 FastAPI 簡單建立起一個回應 "hello, Python" 的服務
-
-`uvicorn main:app --host <ip-number> --port <port-number> --reload`
+# practice-microservice
 
 ## Docker Common
 
@@ -117,10 +113,12 @@
 - `secrets`: 從本機讀檔做 secret 設定
 
 ## Prometheus
+
 收集容器指標數據
 
 ## Grafana
-依賴 Prometheus 呈現儀表板
+
+依賴 Prometheus 呈現多樣儀表板
 
 ## Kubernetes
 

@@ -1,4 +1,4 @@
-#!/Users/elliot.cheng/github/practice-kubernetes/myenv.env/bin/python3.11
+#!/Users/elliot.cheng/github/practice-kubernetes/python/myenv.env/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys

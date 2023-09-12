@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-server
+spec:
+  selector:
+    matchLabels:
+      app: python-server
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: python-server
+    spec:
+      containers:
+      - name: python-server
+        image: nginx:latest
+        ports:
+        - containerPort: 8000
