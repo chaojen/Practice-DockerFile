@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kuard
+spec:
+  volumes: # 定義容器能夠存取的磁碟區清單
+    - name: "kuard-data"
+      # nfs: # 透過 NFS 伺服器掛載
+      #   server: my.nfs.server.local
+      #   path: "/exports"
+      hostPath: # 掛載宿主機
+        path: "/var/lib/kuard"
+  containers:
+    - image: gcr.io/kuar-demo/kuard-amd64:blue
+      name: kuard
+      ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+      resources: # 資源管理
+        # requests: # 最小請求資源
+        #   cpu: "500m"
+        #   memory: "128Mi"
+        limits: # 限制最多用量
+          cpu: "1000m"
+          memory: "256Mi"
+      volumeMounts: # 定義有哪些容器內路徑掛載磁碟區
+        - mountPath: "/data"
+          name: "kuard-data"
+      livenessProbe: # Liveness 探測器
+        httpGet:
+          path: /healthy # 檢查端口
+          port: 8080
+        initialDelaySeconds: 5 # 初始等待時間
+        timeoutSeconds: 1 # 逾時秒數
+        periodSeconds: 10 # 檢查間隔
+        failureThreshold: 3 # 連續失敗次數
+      readinessProbe: # Readiness 探測器，用於決定何時容器可以接受請求
+        httpGet:
+          path: /ready # 檢查端口
+          port: 8080
+        initialDelaySeconds: 30 # 初始等待時間
+        timeoutSeconds: 1 # 逾時秒數
+        periodSeconds: 10 # 檢查間隔
+        failureThreshold: 3 # 連續失敗次數

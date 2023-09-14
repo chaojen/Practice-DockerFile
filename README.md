@@ -49,8 +49,11 @@
   - `--volumes-from <container-name>`: 從其他容器掛載 Volume
   - `-v <volume-name>:<path>`: 掛載 Volume，此指令會覆蓋 Dockerfile 中的 `VOLUME`
   - `--mount type=<bind>,source=<source-path>,target=<target-path>`: 掛載本機資料夾
-    -`readonly`: 唯讀
+    - `readonly`: 唯讀
   - `--health-interval <time>`: 狀態檢查時間頻率
+  - `--memory <mount>m`: 限制容器記憶體空間
+  - `--memory-swap <mount>G`: 限制容器硬碟置換空間
+  - `--cpu-shares <mount>`: 限制 CPU 的使用率
 
 ## Registry API [(docs)](https://docs.docker.com/registry/spec/api/)
 
@@ -120,6 +123,36 @@
 
 依賴 Prometheus 呈現多樣儀表板
 
+## minikube
+
+可執行單ㄧ節點的叢集環境，適用於 kubernetes 學習
+
+- `minikube start`: 啟動叢集
+- `minikube stop`: 停止叢集
+- `minikube delete`: 刪除叢集
+
 ## Kubernetes
 
-使用 Minikube 建立單ㄧ節點環境
+- `kubectl get all`: 檢視所有物件
+- `kubectl get componentstatuses`: 檢查叢集整體健康狀態
+- `kubectl get nodes`: 列出叢集中的 nodes
+- `kubectl get daemonSets --namespace=kube-system kube-proxy`: 查看正在運行的 proxy
+- `kubectl get deployments --namespace=kube-system coredns`: 查看正在運行的 DNS
+- `kubectl get services --namespace=kube-system kube-dns`: 查看為 DNS 提供負載平衡的服務
+- `kubectl describe <resource-name> <obj-name>`: 觀察特定物件的更多資訊
+- `kubectl apply -f <yaml>`: 建立物件
+- `kubectl delete -f <yaml>`: 刪除 yaml 部署物件
+- `kubectl delete <resource-name>/<pod-name>`: 刪除物件
+- `kubectl logs <pod-name>`: 查詢容器中的日誌
+  - `-f`: 串流 log 不斷出
+  - `--previous`: 從前一個執行個體中取得日誌
+- `kubectl exec <pod-name> -- <command>`: 在容器內執行指令
+- `kubectl exec -it <pod-name> -- ash`: 執行互動式工作階段
+- `kubectl attach -it <pod-name>`: 連接進正在執行的程序
+- `kubectl cp <pod-name>:</path/to/remote/file> </path/to/local/file>`: 複製檔案
+- `kubectl get events`: 列出目前 namespace 近 10 筆發生的事件
+  - `--watch`: 串流事件
+- `kubectl cordan`: 讓後續的 Pod 不再安排到此節點
+- `kubectl uncordan`: 重新讓 Pod 安排到此節點上
+- `kubectl drain`: 移除此節點中的 Pod
+- `kubectl port-forward <pod-name> <external-port>:<internal-port>`: 轉發連結埠
