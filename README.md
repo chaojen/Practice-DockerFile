@@ -136,13 +136,21 @@
 - `kubectl get all`: 檢視所有物件
 - `kubectl get componentstatuses`: 檢查叢集整體健康狀態
 - `kubectl get nodes`: 列出叢集中的 nodes
-- `kubectl get daemonSets --namespace=kube-system kube-proxy`: 查看正在運行的 proxy
-- `kubectl get deployments --namespace=kube-system coredns`: 查看正在運行的 DNS
-- `kubectl get services --namespace=kube-system kube-dns`: 查看為 DNS 提供負載平衡的服務
+- `kubectl get <resource-name> (<pod-name>)`: 查看物件
+  - `--show-labels`: 顯示 Labels
+  - `--namespace=<namespace-name>`: 指定 Namespcace ex: kube-system
+  - `-L <key>`: 讓 Label Key 作為欄位之一輸出
+  - `-l '<operator>'`, `--selector="<operator>"`: Label 選擇器
+    - `<key>=<value>`, `<key>!=<value>`, `<key> in (<value>,...)`, `<key> notin (<value>,...)`, `<key>`, `!<key>`
+  - resource-name ex: nodes, daemonSets, deployments, services
+  - pod-name ex: kube-proxy, coredns, kube-dns
 - `kubectl describe <resource-name> <obj-name>`: 觀察特定物件的更多資訊
 - `kubectl apply -f <yaml>`: 建立物件
-- `kubectl delete -f <yaml>`: 刪除 yaml 部署物件
-- `kubectl delete <resource-name>/<pod-name>`: 刪除物件
+- `kubectl delete`
+  - `-f <yaml>`: 刪除 yaml 部署物件
+  - `<resource-name>/<pod-name>`: 刪除對應名稱的物件
+  - `<resource-name> --all`: 刪除該類型的所有物件
+  - `<resource-name> --selector="<operator>"`: 利用選擇器
 - `kubectl logs <pod-name>`: 查詢容器中的日誌
   - `-f`: 串流 log 不斷出
   - `--previous`: 從前一個執行個體中取得日誌
@@ -156,3 +164,8 @@
 - `kubectl uncordan`: 重新讓 Pod 安排到此節點上
 - `kubectl drain`: 移除此節點中的 Pod
 - `kubectl port-forward <pod-name> <external-port>:<internal-port>`: 轉發連結埠
+- `kubectl run <pod-name> --image=<image-path>`: 建立物件
+  - `--labels="<key>=<value>,..."`: 建立 Labels
+- `kubectl label <resource-name> <pod-name> "<key>=<value>"`: 新增 Label
+  - `--overwrite`: 如 Label 已存在需要覆寫
+- `kubectl label <resource-name> <pod-name> "<key>-"`: 移除 Label
